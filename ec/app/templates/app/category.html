@@ -1,0 +1,95 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Category{% endblock title %}
+
+{% block main-content %}
+<!-- Shop Section Start -->
+<section class="section-b-space shop-section">
+    <div class="container-fluid-lg">
+        <div class="row">
+            <div class="col-custome-3">
+                <div class="list-group">
+                    {% for val in title %}
+                    <a href="{% url 'category-title' val.title %}" class="list-group-item list-group-item-action" aria-current="true">{{val.title}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-custome-9">
+                <div class="show-button">
+                    <div class="filter-button d-inline-block d-lg-none">
+                        <a><i class="fa-solid fa-filter"></i> Filter Menu</a>
+                    </div>
+
+                    <div class="top-filter-menu">
+                        <div class="category-dropdown">
+                            <h5 class="text-content">Sort By :</h5>
+                            <div class="dropdown">
+                                <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown">
+                                    <span>Most Popular</span> <i class="fa-solid fa-angle-down"></i>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <li>
+                                        <a class="dropdown-item" id="pop" href="javascript:void(0)">Popularity</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" id="low" href="javascript:void(0)">Low - High
+                                            Price</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" id="high" href="javascript:void(0)">High - Low
+                                            Price</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" id="rating" href="javascript:void(0)">Average
+                                            Rating</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" id="aToz" href="javascript:void(0)">A - Z Order</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" id="zToa" href="javascript:void(0)">Z - A Order</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" id="off" href="javascript:void(0)">% Off - Hight To
+                                            Low</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-15">
+                    <div class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
+                        {% for prod in product %}
+                        <div>
+                            <div class="product-box-3 h-100 wow fadeInUp">
+                                <div class="product-header">
+                                    <div class="product-image">
+                                        <a href="{% url 'product-detail' prod.id %}">
+                                            <div>
+                                                <img src="{{prod.product_image.url}}" class="img-fluid blur-up lazyload"
+                                                     alt=""/><br>
+                                                <div class="fw-bold"> {{prod.title}}</div>
+                                                <div class="product-footer">
+                                                    <div class="product-detail">
+                                                        <h5 class="price"><span class="theme-color">Rs.{{prod.discounted_price}}</span>
+                                                            <del>{{prod.selling_price}}</del>
+                                                        </h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Shop Section End -->
+{% endblock main-content  %}
